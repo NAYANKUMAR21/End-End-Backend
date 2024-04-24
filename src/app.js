@@ -6,7 +6,7 @@ const cors = require("cors");
 const authRouter = require("./router/auth.router");
 const connect = require("./Config/db");
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3000;
 
 app.use(express.json(), express.urlencoded({ extended: true }));
 app.use(cors());
