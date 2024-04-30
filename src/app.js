@@ -3,12 +3,13 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const cors = require("cors");
+const productROuter = require("./router/Product.router");
 const authRouter = require("./router/auth.router");
 const connect = require("./Config/db");
+const redisClient = require("./utils/redis");
+const PORT = process.env?.port || 8080;
 
-const PORT = process.env.PORT || 8080;
-
-app.use(express.json(), express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(cors());
 
 app.get("/", (req, res) => {
@@ -21,8 +22,9 @@ app.get("/", (req, res) => {
 });
 
 app.use("/auth", authRouter);
-
+app.use("/product", productROuter);
 app.listen(PORT, async () => {
   await connect();
+  await redisClient.connect();
   console.log(`backend running on http://localhost:${PORT}`);
 });
