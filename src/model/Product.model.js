@@ -24,11 +24,15 @@ const file = {
     default: 0,
   },
   offers: { type: Array, default: [] },
-  quantity: { type: Number, default: 0 },
-  gender: { enum: ["Male", "Female", "Non-binary"], default: "Male" },
+  quantityInStock: { type: Number, default: 0 },
+  gender: {
+    type: String,
+    enum: ["Male", "Female", "Non-binary"],
+    default: "Male",
+  },
 };
 
-const productSchema = new mongoose.Schema(file);
+const productSchema = new mongoose.Schema(file, { versionKey: false });
 const productModel = mongoose.model("clothing", productSchema);
 
 module.exports = productModel;

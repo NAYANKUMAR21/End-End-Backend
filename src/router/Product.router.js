@@ -3,12 +3,12 @@ const app = express.Router();
 
 const {
   GetProducts,
-  addSingleProductData,
+  AddSingleProductData,
 } = require("../controller/Product.controller");
 
-app.get("/", GetProducts);
+app.get("/:id", GetProducts);
 
-app.post("/", addSingleProductData);
+app.post("/", AddSingleProductData);
 
 app.patch("/", async () => {});
 app.delete("/", async () => {});
